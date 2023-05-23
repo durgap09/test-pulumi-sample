@@ -1,0 +1,263 @@
+{
+    "canvasState": [
+        {
+            "key": 381,
+            "name": "Vpc",
+            "figure": "RoundedRectangle",
+            "otherName": "sample-vpc",
+            "canvasState": "editIcon",
+            "picLight": "https://qcloud.dev.appmodz.net/api/images/light/null",
+            "viewName": "Vpc",
+            "size": "100 auto",
+            "fill": "lightgray",
+            "leftArray": [],
+            "topArray": [
+                {
+                    "portColor": "#4c9126",
+                    "portTitle": "connection",
+                    "portId": "port-connection",
+                    "fromLinkable": true,
+                    "toLinkable": false
+                },
+                {
+                    "portColor": "#8f8801",
+                    "portTitle": "dynamicConnection",
+                    "portId": "port-dynamicConnection",
+                    "fromLinkable": false,
+                    "toLinkable": true
+                }
+            ],
+            "topYellowArray": [],
+            "bottomArray": [],
+            "rightArray": [],
+            "visible": true,
+            "componentId": 358326,
+            "componentCategory": {
+                "componentCategoryId": 78,
+                "componentCategoryName": "ec2",
+                "cloudPlatform": {
+                    "cloudPlatformId": 10,
+                    "cloudPlatformName": "aws",
+                    "cloudPlatformAppmodzName": "aws",
+                    "cloudPlatformPulumiLibrary": "@pulumi/aws",
+                    "cloudPlatformCreatedOn": "2022-07-13T11:32:27.913+00:00",
+                    "cloudPlatformUpdatedOn": "2022-07-13T11:32:27.913+00:00"
+                },
+                "componentCategoryCreatedOn": "2022-07-14T13:30:34.662+00:00",
+                "componentCategoryUpdatedOn": "2022-07-14T13:30:34.662+00:00"
+            },
+            "isInterface": false,
+            "key1": -4,
+            "loc": "-160 -50"
+        }
+    ],
+    "connections": [],
+    "completeProperties": [
+        {
+            "key": 381,
+            "name": "Vpc",
+            "properties": [
+                {
+                    "id": 194159,
+                    "name": "cidrBlock",
+                    "hint": "The CIDR block for the VPC.",
+                    "appmodzName": "cidrBlock",
+                    "type": "string",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": false,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.511+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.545+00:00",
+                    "value": "125.0.0.0/16",
+                    "dataType": "string"
+                },
+                {
+                    "id": 194158,
+                    "name": "assignGeneratedIpv6CidrBlock",
+                    "hint": "Requests an Amazon-provided IPv6 CIDR\nblock with a /56 prefix length for the VPC. You cannot specify the range of IP addresses, or\nthe size of the CIDR block. Default is `false`.",
+                    "appmodzName": "assignGeneratedIpv6CidrBlock",
+                    "type": "boolean",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": false,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.505+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.545+00:00",
+                    "dataType": "boolean"
+                },
+                {
+                    "id": 194160,
+                    "name": "enableClassiclink",
+                    "hint": "A boolean flag to enable/disable ClassicLink\nfor the VPC. Only valid in regions and accounts that support EC2 Classic.\nSee the [ClassicLink documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) for more information. Defaults false.",
+                    "appmodzName": "enableClassiclink",
+                    "type": "boolean",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": false,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.512+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.546+00:00",
+                    "dataType": "boolean"
+                },
+                {
+                    "id": 194161,
+                    "name": "enableClassiclinkDnsSupport",
+                    "hint": "A boolean flag to enable/disable ClassicLink DNS Support for the VPC.\nOnly valid in regions and accounts that support EC2 Classic.",
+                    "appmodzName": "enableClassiclinkDnsSupport",
+                    "type": "boolean",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": false,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.512+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.546+00:00",
+                    "dataType": "boolean"
+                },
+                {
+                    "id": 194162,
+                    "name": "enableDnsHostnames",
+                    "hint": "A boolean flag to enable/disable DNS hostnames in the VPC. Defaults false.",
+                    "appmodzName": "enableDnsHostnames",
+                    "type": "boolean",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": false,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.513+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.547+00:00",
+                    "dataType": "boolean"
+                },
+                {
+                    "id": 194163,
+                    "name": "enableDnsSupport",
+                    "hint": "A boolean flag to enable/disable DNS support in the VPC. Defaults true.",
+                    "appmodzName": "enableDnsSupport",
+                    "type": "boolean",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": false,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.514+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.547+00:00",
+                    "dataType": "boolean"
+                },
+                {
+                    "id": 194164,
+                    "name": "instanceTenancy",
+                    "hint": "A tenancy option for instances launched into the VPC. Default is `default`, which\nmakes your instances shared on the host. Using either of the other options (`dedicated` or `host`) costs at least $2/hr.",
+                    "appmodzName": "instanceTenancy",
+                    "type": "string",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": false,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.515+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.547+00:00",
+                    "dataType": "string"
+                },
+                {
+                    "id": 194165,
+                    "name": "tags",
+                    "hint": "A map of tags to assign to the resource. .If configured with a provider `defaultTags` configuration block present, tags with matching keys will overwrite those defined at the provider-level.",
+                    "appmodzName": "tags",
+                    "type": "map",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": false,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.515+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.548+00:00",
+                    "dataType": "map"
+                },
+                {
+                    "id": 194166,
+                    "name": "name",
+                    "hint": "",
+                    "appmodzName": "name",
+                    "type": "string",
+                    "interfaceName": null,
+                    "interfaceNamespace": null,
+                    "interfaceModule": null,
+                    "expectsInterface": null,
+                    "isConnectable": false,
+                    "isMandatory": null,
+                    "isVisible": true,
+                    "propertyCreatedOn": "2022-07-26T10:21:51.516+00:00",
+                    "propertyUpdatedOn": "2022-11-15T10:32:34.548+00:00",
+                    "value": "sample-vpc",
+                    "dataType": "string"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "key": 381,
+            "name": "Vpc",
+            "properties": [
+                {
+                    "name": "cidrBlock",
+                    "dataType": "string",
+                    "hint": "The CIDR block for the VPC.",
+                    "appmodzName": "cidrBlock",
+                    "value": "125.0.0.0/16"
+                },
+                {
+                    "name": "tags",
+                    "dataType": "map",
+                    "hint": "A map of tags to assign to the resource. .If configured with a provider `defaultTags` configuration block present, tags with matching keys will overwrite those defined at the provider-level.",
+                    "appmodzName": "tags",
+                    "value": {
+                        "Name": "sample-vpc"
+                    }
+                },
+                {
+                    "name": "name",
+                    "dataType": "string",
+                    "hint": "",
+                    "appmodzName": "name",
+                    "value": "sample-vpc"
+                }
+            ]
+        }
+    ],
+    "message": [
+        {
+            "type": "success",
+            "text": "Save Executed",
+            "time": "05-23-2023 03:38 pm",
+            "content": "stack Initialized"
+        }
+    ],
+    "state": [
+        {
+            "name": "Save",
+            "action": "success"
+        }
+    ]
+}
