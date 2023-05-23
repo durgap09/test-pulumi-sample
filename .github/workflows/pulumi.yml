@@ -33,12 +33,21 @@ jobs:
           echo "[default]" >> ~/.aws/config
           echo "region=${{ secrets.AWS_REGION }}" >> ~/.aws/config
 
-      - name: Log into Pulumi
-        run: pulumi login
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-
-      - name: Pulumi preview
-        run: pulumi preview
+ #     - name: Log into Pulumi
+ #       run: pulumi login
+ #       env:
+ #         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+ #
+ #     - name: Pulumi preview
+ #       run: pulumi preview
+ #       env:
+ #         PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          
+          
+      - run: npm install
+      - uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: org-name/stack-name # When using an individual account, only use stack-name.  
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
