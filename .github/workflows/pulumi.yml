@@ -1,0 +1,28 @@
+name: Pulumi Workflow
+
+on:
+  push:
+    branches:
+      - main  # Modify this if you want the workflow to trigger on a different branch
+
+jobs:
+  pulumi:
+    runs-on: ubuntu-latest  # You can choose a different operating system if needed
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Modify this if you require a different Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Log Pulumi version
+        run: pulumi version
+
+      - name: Pulumi preview
+        run: pulumi preview
