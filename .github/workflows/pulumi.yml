@@ -6,7 +6,8 @@ on:
       - master
 
 jobs:
-  pulumi:
+  preview:
+    name: Preview
     runs-on: ubuntu-latest
 
     steps:
@@ -14,23 +15,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3.5.0
         with:
           node-version: '14'
 
-      - name: Install Pulumi CLI
-        run: |
-          curl -fsSL https://get.pulumi.com | sh
-          export PATH=$HOME/.pulumi/bin:$PATH
-
-      - name: Configure AWS credentials
-        run: |
-          mkdir -p ~/.aws
-          echo "[default]" >> ~/.aws/credentials
-          echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
-          echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
-          echo "[default]" >> ~/.aws/config
-          echo "region=${{ secrets.AWS_REGION }}" >> ~/.aws/config
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Install dependencies
         run: npm install
@@ -38,9 +32,4 @@ jobs:
       - name: Log into Pulumi
         run: pulumi login
         env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
-
-      - name: Pulumi preview
-        run: pulumi preview
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
