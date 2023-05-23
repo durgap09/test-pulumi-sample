@@ -3,7 +3,7 @@ name: Pulumi Workflow
 on:
   push:
     branches:
-      - main  # Modify this if you want the workflow to trigger on a different branch
+      - master  # Modify this if you want the workflow to trigger on a different branch
 
 jobs:
   pulumi:
