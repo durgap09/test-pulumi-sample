@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-
 jobs:
   preview:
     name: Preview
@@ -23,7 +22,7 @@ jobs:
           path: temp-files
 
       - name: Copy files to temp folder
-        run: cp -R temp-files/* temp/
+        run: cp -R temp-files/* .
 
       - name: Set AWS Region
         run: echo "AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
