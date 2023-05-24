@@ -39,7 +39,7 @@ jobs:
         run: npm install
 
       - name: Set Pulumi Access Token
-        run: pulumi login --access-token ${{ secrets.PULUMI_ACCESS_TOKEN }}
+        run: echo ${{ secrets.PULUMI_ACCESS_TOKEN }} > ~/.pulumi/credentials
 
       - name: Select Pulumi Stack
         run: pulumi stack select sampl
