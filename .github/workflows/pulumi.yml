@@ -23,6 +23,9 @@ jobs:
           curl -fsSL https://get.pulumi.com | sh
           export PATH="$HOME/.pulumi/bin:$PATH"
 
+      - name: Create .aws directory
+        run: mkdir -p ~/.aws
+
       - name: Configure AWS credentials and region
         run: |
           echo "[default]" >> ~/.aws/credentials
