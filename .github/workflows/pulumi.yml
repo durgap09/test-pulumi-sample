@@ -14,13 +14,11 @@ jobs:
       - name: Checkout your repository
         uses: actions/checkout@v2
 
-      - name: Copy files to temporary folder
-        run: find . -mindepth 1 -maxdepth 1 -not -path "./temp/*" -exec cp -R {} temp/ \;
-
       - name: Checkout durgap09/pulumi-files-WFGA repository
         uses: actions/checkout@v2
         with:
           repository: durgap09/pulumi-files-WFGA
+          ref: main  # Specify the branch or commit you want to checkout from the repository
           path: temp
 
       - name: Set AWS Region
