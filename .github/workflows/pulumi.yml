@@ -1,47 +1,27 @@
-name: Pulumi Workflow
-
+name: Pulumi
 on:
   push:
     branches:
-      - master
-
+      - main
 jobs:
-  build:
+  update:
+    name: Update
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3.5.0
         with:
-          node-version: '14'
-
-      - name: Install Pulumi CLI
-        run: |
-          curl -fsSL https://get.pulumi.com | sh
-          export PATH="$HOME/.pulumi/bin:$PATH"
-
-      - name: Create .aws directory
-        run: mkdir -p ~/.aws
-
-      - name: Configure AWS credentials and region
-        run: |
-          echo "[default]" >> ~/.aws/credentials
-          echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
-          echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
-          echo "[default]" >> ~/.aws/config
-          echo "region=${{ secrets.AWS_REGION }}" >> ~/.aws/config
-
-      - name: Set Pulumi access token
-        run: pulumi login --non-interactive ${{ secrets.PULUMI_ACCESS_TOKEN }}
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Pulumi login
-        run: pulumi stack init sampl
-
-      - name: Pulumi preview
-        run: pulumi preview
+          node-version-file: package.json
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - run: npm install
+      - uses: pulumi/actions@v3
+        with:
+          command: up
+          stack-name: org-name/stack-name # When using an individual account, only use stack-name.
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
