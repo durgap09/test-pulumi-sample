@@ -8,26 +8,24 @@ jobs:
     name: Preview
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Files
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           repository: durgap09/pulumi-files-WFGA
           path: files
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: 14.x
 
-      - name: Install Dependencies
-        run: npm install
+      - run: npm install
 
-      # Continue with the rest of your workflow steps
-      - name: Pulumi Preview
-        uses: pulumi/actions@v3
+      - name: Set AWS Region
+        run: echo "AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
+
+      - uses: pulumi/actions@v3
         with:
           command: preview
-          stack-name: dev
+          stack-name: sampl
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
