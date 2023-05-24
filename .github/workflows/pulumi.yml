@@ -1,47 +1,26 @@
-name: Pulumi Workflow
-
+name: Pulumi
 on:
   push:
     branches:
       - master
-
 jobs:
-  build:
+  preview:
+    name: Preview
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: '14'
-
-      - name: Install Pulumi CLI
-        run: |
-          curl -fsSL https://get.pulumi.com | sh
-          export PATH="$HOME/.pulumi/bin:$PATH"
-
-      - name: Create .aws directory
-        run: mkdir -p ~/.aws
-
-      - name: Configure AWS credentials and region
-        run: |
-          echo "[default]" >> ~/.aws/credentials
-          echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
-          echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
-          echo "[default]" >> ~/.aws/config
-          echo "region=${{ secrets.AWS_REGION }}" >> ~/.aws/config
-
-      - name: Set Pulumi access token
-        run: pulumi login --non-interactive ${{ secrets.PULUMI_ACCESS_TOKEN }}
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Pulumi login
-        run: pulumi stack init sampl
-
-      - name: Pulumi preview
-        run: pulumi preview
+          node-version: 14.x
+      - run: npm install
+      - name: Set AWS Region
+        run: echo "AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
+      - uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: dev
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
