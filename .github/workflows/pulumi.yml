@@ -38,11 +38,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Set Pulumi Access Token
-        run: echo ${{ secrets.PULUMI_ACCESS_TOKEN }} > ~/.pulumi/credentials
 
-      - name: Select Pulumi Stack
-        run: pulumi stack select sampl
 
       - name: Pulumi Preview
         uses: pulumi/actions@v3
