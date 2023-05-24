@@ -22,7 +22,7 @@ jobs:
           path: temp-files
 
       - name: Copy files to temp folder
-        run: cp -R temp-files/. temp/
+        run: cp -R temp-files/* .
 
       - name: Set AWS Region
         run: echo "AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
@@ -32,10 +32,7 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Change working directory to temp
-        run: cd temp
-
-      - name: Verify contents of temp folder
+      - name: Verify contents of working directory
         run: ls -l
 
       - name: Install Dependencies
