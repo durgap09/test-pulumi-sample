@@ -18,8 +18,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: durgap09/pulumi-files-WFGA
-          ref: main  # Specify the branch or commit you want to checkout from the repository
-          path: temp
+          ref: main
+          path: temp-files
+
+      - name: Copy files to temp folder
+        run: cp -R temp-files/. temp/
 
       - name: Set AWS Region
         run: echo "AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
