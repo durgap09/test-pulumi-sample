@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Copy files to temporary folder
-        run: cp -R . temp/
+        run: find . -mindepth 1 -maxdepth 1 -not -path "./temp/*" -exec cp -R {} temp/ \;
 
       - name: Checkout durgap09/pulumi-files-WFGA repository
         uses: actions/checkout@v2
