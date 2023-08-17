@@ -3,7 +3,7 @@ name: Pulumi
 on:
   push:
     branches:
-      - 'dp-git'  # Trigger the workflow when pushing to the 'main' branch
+      - 'ws-1/dp-git'  # Trigger the workflow when pushing to the 'main' branch
 
 jobs:
   preview:
